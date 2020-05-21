@@ -1,6 +1,6 @@
 from time import time
 from threading import Thread
-
+import asyncio
 
 def print_time_main(func, b):
     a = time()
@@ -9,6 +9,12 @@ def print_time_main(func, b):
 
 
 def hard_func(a):
+    for i in range(int(a)):
+        #print(((i/a)*100)//1)
+        c = i/a
+
+
+async def a_hard_func(a):
     for i in range(int(a)):
         #print(((i/a)*100)//1)
         c = i/a
@@ -45,7 +51,20 @@ def print_time_threading_5(func,b):
     print("Five Threads: %.4f s" % (time() - a))
 
 
+def async_time_2(func,b):
+    a = time()
+    ioloop = asyncio.get_event_loop()
+    tasks = [
+        ioloop.create_task(func(b//2)),
+        ioloop.create_task(func(b//2))
+    ]
+    ioloop.run_until_complete(asyncio.wait(tasks))
+    ioloop.close()
+    print("Asyncio 2 tasks: %.4f s" % (time() - a))
+
+
 if __name__ == "__main__":
-    print_time_main(hard_func, 200000000)
-    print_time_threading_2(hard_func, 200000000)
-    print_time_threading_5(hard_func, 200000000)
+    #print_time_main(hard_func, 200000000)
+    #print_time_threading_2(hard_func, 200000000)
+    #print_time_threading_5(hard_func, 200000000)
+    #async_time_2(a_hard_func, 200000000)
