@@ -11,7 +11,7 @@ time_mp4 = list(), list(), list(), list(), list(), \
 
 if __name__ == "__main__":
     for i in tqdm(range(10)):
-        num = 500000 * i
+        num = 5000000 * i
         num_mt.append(num)
         time_mt.append(main.print_time_main(main.hard_func, num))
         num_t2.append(num)
@@ -36,6 +36,6 @@ if __name__ == "__main__":
     plt.plot(num_mp2, time_mp2, 'y', label='multiprocessing 2 processes')
     plt.plot(num_mp4, time_mp4, 'k', label='multiprocessing 4 processes')
     plt.legend()
-    plt.savefig('graphicBIGNUM.png', format='png')
-    plt.savefig('graphicBIGNUM.pdf', format='pdf')
+    plt.savefig('graphicVERYBIGNUM.png', format='png')
+    plt.savefig('graphicVERYBIGNUM.pdf', format='pdf')
     plt.show()
