@@ -5,12 +5,17 @@ import multiprocessing as mp
 
 
 NUM = 2000000
+pr = print
+def print(*args, **kwargs):
+    if __name__ == "__main__":
+        pr(*args, **kwargs)
 
 
 def print_time_main(func, b):
     a = time()
     func(b)
     print("Main Thread: %.4f s" % (time()-a))
+    return time()-a
 
 
 def hard_func(a):
@@ -21,6 +26,7 @@ def hard_func(a):
 async def a_hard_func(a):
     for i in range(a):
         yfff = i**2 + i**4 - i**3
+    return time() - a
 
 
 def print_time_threading_2(func,b):
@@ -32,6 +38,7 @@ def print_time_threading_2(func,b):
     t1.join()
     t2.join()
     print("Two Threads: %.4f s" % (time() - a))
+    return time() - a
 
 
 def print_time_threading_5(func,b):
@@ -52,6 +59,7 @@ def print_time_threading_5(func,b):
     t4.join()
     t5.join()
     print("Five Threads: %.4f s" % (time() - a))
+    return time() - a
 
 
 def async_time_4(func,b):
@@ -66,6 +74,7 @@ def async_time_4(func,b):
     ioloop.run_until_complete(asyncio.wait(tasks))
     ioloop.close()
     print("Asyncio 4 tasks: %.4f s" % (time() - a))
+    return time() - a
 
 
 def mp_time_1(func, b):
@@ -78,6 +87,7 @@ def mp_time_1(func, b):
     for i in pr:
         i.join()
     print("Multiprocessing 1: %.4f s" % (time()-a))
+    return time() - a
 
 
 def mp_time_2(func, b):
@@ -90,6 +100,7 @@ def mp_time_2(func, b):
     for i in pr:
         i.join()
     print("Multiprocessing 2: %.4f s" % (time()-a))
+    return time() - a
 
 
 def mp_time_4(func, b):
@@ -102,6 +113,7 @@ def mp_time_4(func, b):
     for i in pr:
         i.join()
     print("Multiprocessing 4: %.4f s" % (time()-a))
+    return time() - a
 
 
 if __name__ == "__main__":
