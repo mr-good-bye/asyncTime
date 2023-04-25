@@ -13,6 +13,7 @@ Calculating time with and without async
 - async_6 - Asyncio, 6 threads
 
 Here we can see that main thread, Threading and asyncio have the same time, when multiprocessing calculations are faster.
+
 ![Alt text](visual.png?raw=true "Full Graph")
 
 ```    'one'faster than 'one' by 1.0
@@ -29,6 +30,7 @@ Multiprocessing is faster.
 
 This picture shows, that multiprocessing have like equal calculation time for small-med numbers
 , where others have the linear dependence
+
 ![Alt text](visual_low.png?raw=true "Low Graph")
 
 
