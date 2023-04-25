@@ -17,6 +17,17 @@ for k, v in res.items():
 print(_res.keys())
 
 
+def visual_low():
+    colors = 'bgrcmyk'
+    i = 0
+    for mode in _res.keys():
+        plt.plot(list(_res[mode].keys())[:4], list(_res[mode].values())[:4], colors[i], label=mode)
+        i += 1
+    plt.legend()
+    plt.savefig('visual_low.png', format='png')
+    plt.show()
+
+
 def visual():
     colors = 'bgrcmyk'
     i = 0
@@ -34,4 +45,6 @@ def data():
         print(f'\'{mode}\''.rjust(9) + f'faster than \'one\' by {_res["one"][m]/_res[mode][m]}')
 
 
+visual()
+visual_low()
 data()

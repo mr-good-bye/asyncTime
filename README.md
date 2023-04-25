@@ -1,14 +1,39 @@
-# asyncTime
+# AsyncTime
 Calculating time with and without async
-- By the results, I can say that GIL is working, doing the same work in 5 Threads than in main thread is not faster.
-- But multiprocessing time differs. We can see that calculating not very hard calculations by multiprocessing is even slower, when actions - with rather big and hard calculations are faster. I provide you with three graphs.
-- By the first graph we can see that multiprocessing is odd while working with small numbers.
-- By the last graph we can see that multiprocessibg is faster than Threads with big numbers.
-- Second graph just shows when the advantage goes from Threads to multiprocessing
+- By the results, I can say that GIL is working, doing the same work in 6 Threads than in one is not faster.
+- But multiprocessing time differs. We can see that calculating not very hard calculations by multiprocessing is even slower, but with rather big and hard calculations are faster.
+
 ## Results
-- ![Alt text](graphic.png?raw=true "Nums")
-- Threads are linear and multiprocessing time is not very trustful
-- ![Alt text](graphicBIGNUM.png?raw=true "Big Nums")
-- Threads are linear and multiprocessing time increase slower then thread
-- ![Alt text](graphicVERYBIGNUM.png?raw=true "Very Big Nums")
-- Here we can see advantage of multiprocessing rather than threads
+
+- one     - No async
+- t2      - Threading, 2 threads
+- t6      - Threading, 6 threads
+- mp_2    - Multiprocessing, 2 processes
+- mp_6    - Multiprocessing, 6 processes
+- async_6 - Asyncio, 6 threads
+
+Here we can see that main thread, Threading and asyncio have the same time, when multiprocessing calculations are faster.
+![Alt text](visual.png?raw=true "Full Graph")
+
+```    'one'faster than 'one' by 1.0
+     't2'faster than 'one' by 1.0035262095048139
+     't6'faster than 'one' by 1.002758486863281
+   'mp_2'faster than 'one' by 1.835098695624356
+   'mp_6'faster than 'one' by 4.227536785628979
+'async_6'faster than 'one' by 0.9837159203216934
+```
+
+So async is not really faster, even slower
+threading has no opportunities in calculations
+Multiprocessing is faster.
+
+This picture shows, that multiprocessing have like equal calculation time for small-med numbers
+, where others have the linear dependence
+![Alt text](visual_low.png?raw=true "Low Graph")
+
+
+> I would love to get your ideas in Issues/PRs/Discussions
+> 
+> Feel free to provide your opinion <3
+> 
+> @Nikita Trubitsyn
